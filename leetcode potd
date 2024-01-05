@@ -1,0 +1,45 @@
+class Solution {
+public:
+  /*  int fun(vector<int>&a,int p,int i,int n,int l,vector<int>&dp)
+    {
+        //cout<<l<<" ";
+        if(i>=n)       
+        {
+            //cout<<l<<" ";
+            return l;
+        }
+        int ans=1;
+        for(int j=i+1;j<n;j++)
+        {
+            if(a[j]>p)
+            {
+               // cout<<l<<" ";
+               return fun(a,a[j],j,a.size(),l+1,dp);
+               // cout<<ans<<" ";
+            }
+            
+        }
+        //cout<<ans<<" ";
+        return dp[i]=ans;
+    }   */
+
+    int fun(vector<int>&a,int i,int z,int n,vector<vector<int>>&dp)
+    {
+        if(i==n) return 0;
+        if(dp[i][z+1]!=-1) return dp[i][z+1];
+        int p=fun(a,i+1,z,n,dp);
+        int q=0;
+        if(z==-1 || a[i]>a[z])
+        {
+            q=1+fun(a,i+1,i,n,dp);
+        }
+        return dp[i][z+1]=max(p,q);
+    }
+    int lengthOfLIS(vector<int>& a) {
+        //vector<int>dp(a.size(),-1);
+        //return fun(a,-100000,0,a.size(),1,dp);
+        vector<vector<int>>dp(a.size(),vector<int>(a.size()+1,-1));
+        // return fun(a,0,-10000,a.size(),dp);
+        return fun(a,0,-1,a.size(),dp);
+    }
+};
