@@ -1,0 +1,7 @@
+class Solution:
+	def find_median(self, v):
+	    v.sort()
+	    if len(v)%2!=0:
+	        return v[len(v)//2]
+	    else:
+	        return (v[len(v)//2-1]+v[len(v)//2]) // 2
