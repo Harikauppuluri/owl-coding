@@ -1,0 +1,7 @@
+n = int(input())
+sieve_value = set(range(2, n + 1))
+while sieve_value:
+    prime = min(sieve_value)
+    print(prime,end="\t")
+    sieve_value -= set(range(prime, n + 1, prime))
+print ()
