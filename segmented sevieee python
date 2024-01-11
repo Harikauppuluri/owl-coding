@@ -1,0 +1,18 @@
+result = [True] * (m - n + 1)
+
+    for prime in primes:
+        start = max(prime * prime, (n // prime) * prime)
+        if start < n:
+            start += prime
+        for j in range(start, m + 1, prime):
+            result[j - n] = False
+
+    primes = [i + n for i in range(m - n + 1) if result[i] and i + n >= 2]
+
+
+    return primes
+
+n = int(input())
+m = int(input())
+s = segmented_sieve(n, m)
+print(s)
